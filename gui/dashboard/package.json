@@ -21,5 +21,9 @@
     "typescript": "^5.0.0",
     "vite": "^5.0.3"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@sveltejs/adapter-static": "^3.0.2",
+    "sveltekit-adapter-html-like": "^0.3.2"
+  }
 }
