@@ -79,7 +79,7 @@ val copySvelteKitToSPIFFS by tasks.registering(Copy::class) {
 
 // Task to build the ESP32 firmware using PlatformIO
 val buildESP32 by tasks.registering(Exec::class) {
-    dependsOn(copySvelteKitToSPIFFS, copyDbToSPIFFS)
+    // dependsOn(copySvelteKitToSPIFFS, copyDbToSPIFFS)
     workingDir = esp32ProjectDir
     commandLine("platformio", "run")
 }
@@ -89,6 +89,13 @@ val uploadESP32 by tasks.registering(Exec::class) {
     dependsOn(buildESP32)
     workingDir = esp32ProjectDir
     commandLine("platformio", "run", "--target", "upload")
+}
+//
+// Task to upload the ESP32 filesystem to the device
+val uploadESP32FS by tasks.registering(Exec::class) {
+    dependsOn(buildESP32)
+    workingDir = esp32ProjectDir
+    commandLine("platformio", "run", "--target", "uploadfs")
 }
 
 // Task to clean the ESP32 build artifacts
@@ -122,11 +129,12 @@ val cleanAll by tasks.registering {
 
 // Composite task to build everything
 val buildAll by tasks.registering {
-    dependsOn(buildESP32)
+    // dependsOn(copySvelteKitToSPIFFS, copyDbToSPIFFS)
+    dependsOn(copySvelteKitToSPIFFS, copyDbToSPIFFS, buildESP32)
 }
 
 // Composite task to build and upload everything
 val uploadAll by tasks.registering {
-    dependsOn(uploadESP32)
+    dependsOn(buildAll, uploadESP32, uploadESP32FS)
 }
 
