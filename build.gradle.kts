@@ -82,6 +82,7 @@ val buildESP32 by tasks.registering(Exec::class) {
     // dependsOn(copySvelteKitToSPIFFS, copyDbToSPIFFS)
     workingDir = esp32ProjectDir
     commandLine("platformio", "run")
+    commandLine("xtensa-esp32-elf-strip", "-s", ".pio/build/esp32-s3-devkitm-1/firmware.elf")
 }
 
 // Task to upload the ESP32 firmware to the device
@@ -131,10 +132,12 @@ val cleanAll by tasks.registering {
 val buildAll by tasks.registering {
     // dependsOn(copySvelteKitToSPIFFS, copyDbToSPIFFS)
     dependsOn(copySvelteKitToSPIFFS, copyDbToSPIFFS, buildESP32)
+    // dependsOn(buildESP32)
 }
 
 // Composite task to build and upload everything
 val uploadAll by tasks.registering {
     dependsOn(buildAll, uploadESP32, uploadESP32FS)
+    // dependsOn(buildAll, uploadESP32)
 }
 
