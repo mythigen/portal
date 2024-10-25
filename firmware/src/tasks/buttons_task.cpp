@@ -1,6 +1,6 @@
-#include "tasks.h"
-#include "../control_buttons.h"   // Include hardware logic
-#include "../rfid_reader.h"       // Include RFID functions
+#include "tasks/tasks.h"
+#include "control_buttons.h"   // Include hardware logic
+#include "rfid_reader.h"       // Include RFID functions
 
 // Control Buttons Task - Manages RFID actions based on button input
 void buttons_task(void *pvParameters) {

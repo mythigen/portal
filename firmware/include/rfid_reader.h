@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 #include <SoftwareSerial.h>
+#include "solenoid.h"
+#include "tasks/tasks.h"
 
 extern SoftwareSerial* RFID;
 extern bool rfidActive;

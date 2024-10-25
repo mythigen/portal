@@ -4,7 +4,11 @@
 #include <Arduino.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/queue.h"
+#include <LittleFS.h>
+#include <ESPAsyncWebServer.h>
 #include "../portal.h"
+
 
 // Task Handles
 extern TaskHandle_t wifiTaskHandle;
@@ -13,6 +17,8 @@ extern TaskHandle_t rfidTaskHandle;
 extern TaskHandle_t lockTaskHandle;
 extern TaskHandle_t buttonsTaskHandle;
 extern TaskHandle_t statusLedTaskHandle;
+
+extern QueueHandle_t solenoidQueue;
 
 // Function Prototypes for Task Initialization
 void init_tasks();

@@ -1,6 +1,6 @@
-#include "tasks.h"
-#include "../status_led.h"
-#include "../rfid_reader.h"
+#include "tasks/tasks.h"
+#include "status_led.h"
+#include "rfid_reader.h"
 
 void status_led_task(void *pvParameters) {
     while (true) {

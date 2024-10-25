@@ -16,7 +16,10 @@ void rfid_init() {
 
 // Read when a card is in range
 void rfid_read_card() {
+        // Serial.print("Card Read: ");
     if (RFID->available() > 0 && rfidActive) {
+        
+        // (void)solenoidQueue;
         delay(5);  // Delay to allow for full card read
         char c = RFID->read();
         text += c;
@@ -25,6 +28,8 @@ void rfid_read_card() {
             Serial.print("Card Read: ");
             Serial.println(text);
             text = "";  // Clear the text buffer
+            // int signal = 1;  // Example signal (can be any value, here 1 for simplicity)
+            // xQueueSend(solenoidQueue, &signal, portMAX_DELAY);
         }
     }
 }

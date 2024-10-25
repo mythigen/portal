@@ -1,4 +1,4 @@
-#include "./wifi_manager.h"
+#include "wifi_manager.h"
 
 void WiFiManager::init() {
   WiFi.begin(WiFi_SSID, WiFi_PASSWORD);
@@ -6,5 +6,5 @@ void WiFiManager::init() {
     delay(500);
     Serial.println("Connecting to WiFi..");
   }
-  Serial.println("Connected to the WiFi network");
+  Serial.println("Connected to the WiFi network: " + WiFi.localIP().toString());
 }
